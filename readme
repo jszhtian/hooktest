@@ -1,0 +1,5 @@
+Hook test for Win32API in Unicode
+
+Need test it for MBCS Enviroment!
+
+Need replace detours to EasyHook!
