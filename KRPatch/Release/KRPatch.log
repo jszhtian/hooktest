@@ -1,12 +1,12 @@
 ﻿  dllmain.cpp
-    正在创建库 C:\Users\jszht\Desktop\KRPatch\Release\KRPatch.lib 和对象 C:\Users\jszht\Desktop\KRPatch\Release\KRPatch.exp
+    正在创建库 F:\github\KRPatch\Release\KRPatch.lib 和对象 F:\github\KRPatch\Release\KRPatch.exp
   正在生成代码
-  2 of 5 functions (40.0%) were compiled, the rest were copied from previous compilation.
+  3 of 4 functions (75.0%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    1 functions had inline decision re-evaluated but remain unchanged
+    0 functions had inline decision re-evaluated but remain unchanged
   已完成代码的生成
-detours.lib(detours.obj) : warning LNK4099: 未找到 PDB“detours.pdb”(使用“detours.lib(detours.obj)”或在“C:\Users\jszht\Desktop\KRPatch\Release\detours.pdb”中寻找)；正在链接对象，如同没有调试信息一样
-detours.lib(modules.obj) : warning LNK4099: 未找到 PDB“detours.pdb”(使用“detours.lib(modules.obj)”或在“C:\Users\jszht\Desktop\KRPatch\Release\detours.pdb”中寻找)；正在链接对象，如同没有调试信息一样
-detours.lib(disasm.obj) : warning LNK4099: 未找到 PDB“detours.pdb”(使用“detours.lib(disasm.obj)”或在“C:\Users\jszht\Desktop\KRPatch\Release\detours.pdb”中寻找)；正在链接对象，如同没有调试信息一样
-  KRPatch.vcxproj -> C:\Users\jszht\Desktop\KRPatch\Release\KRPatch.dll
-  KRPatch.vcxproj -> C:\Users\jszht\Desktop\KRPatch\Release\KRPatch.pdb (Full PDB)
+detours.lib(detours.obj) : warning LNK4099: 未找到 PDB“detours.pdb”(使用“detours.lib(detours.obj)”或在“F:\github\KRPatch\Release\detours.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+detours.lib(modules.obj) : warning LNK4099: 未找到 PDB“detours.pdb”(使用“detours.lib(modules.obj)”或在“F:\github\KRPatch\Release\detours.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+detours.lib(disasm.obj) : warning LNK4099: 未找到 PDB“detours.pdb”(使用“detours.lib(disasm.obj)”或在“F:\github\KRPatch\Release\detours.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+  KRPatch.vcxproj -> F:\github\KRPatch\Release\KRPatch.dll
+  KRPatch.vcxproj -> F:\github\KRPatch\Release\KRPatch.pdb (Full PDB)

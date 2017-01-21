@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include "detours.h"
 
-PVOID g_pOldCreateFontIndirectW = NULL;
+/*PVOID g_pOldCreateFontIndirectW = NULL;
 const char cmptg1[] = "Windows title2 Set";
 typedef int (WINAPI *PfuncCreateFontIndirectW)(LOGFONT *lplf);
 int WINAPI NewCreateFontIndirectW(LOGFONT *lplf)
@@ -17,8 +17,8 @@ int WINAPI NewCreateFontIndirectW(LOGFONT *lplf)
 	//lplf->lfCharSet = ANSI_CHARSET;
 	//lplf->lfCharSet = SHIFTJIS_CHARSET;
 	return ((PfuncCreateFontIndirectW)g_pOldCreateFontIndirectW)(lplf);
-}
-
+}*/
+/*
 PVOID g_pOldSetWindowTextA = NULL;
 typedef int (WINAPI *PfuncSetWindowTextA)(HWND hwnd, LPCTSTR lpString);
 int WINAPI NewSetWindowTextA(HWND hwnd, LPCTSTR lpString)
@@ -29,14 +29,20 @@ int WINAPI NewSetWindowTextA(HWND hwnd, LPCTSTR lpString)
 		strcpy((char*)(LPCTSTR)lpString, "标题变更测试");
 	}
 	return ((PfuncSetWindowTextA)g_pOldSetWindowTextA)(hwnd, lpString);
+}*/
+
+PVOID g_pOldCreateWindowEx = NULL;
+typedef int(WINAPI *PfuncCreateWindowEx)(DWORD dwExStyle, LPCTSTR lpClassname, LPCTSTR lpwindowName, DWORD dwStyle, int x, int y, int nWidth, int nHeight, HWND HwndParent, HMENU hmenu, HINSTANCE hInstance, LPVOID lpParam);
+int WINAPI NewCreateWindowEX(DWORD dwExStyle, LPCTSTR lpClassname, LPCTSTR lpwindowName, DWORD dwStyle, int x, int y, int nWidth, int nHeight, HWND HwndParent, HMENU hmenu, HINSTANCE hInstance, LPVOID lpParam)
+{
+	MessageBoxW(0, L"Hooked!", L"Info", 0);
+	return((PfuncCreateWindowEx)g_pOldCreateWindowEx)(dwExStyle, lpClassname, lpwindowName, dwStyle, x, y, nWidth, nHeight, HwndParent, hmenu, hInstance, lpParam);
 }
-
-
 
 //安装Hook 
 void APIENTRY SetHook()
 {
-	DetourTransactionBegin();
+/*	DetourTransactionBegin();
 	DetourUpdateThread(GetCurrentThread());
 	g_pOldCreateFontIndirectW = DetourFindFunction("GDI32.dll","CreateFontIndirectW");
 	DetourAttach(&g_pOldCreateFontIndirectW,NewCreateFontIndirectW);
@@ -46,6 +52,13 @@ void APIENTRY SetHook()
 	DetourUpdateThread(GetCurrentThread());
 	g_pOldSetWindowTextA = DetourFindFunction("USER32.dll", "SetWindowTextA");
 	DetourAttach(&g_pOldSetWindowTextA, NewSetWindowTextA);
+	DetourTransactionCommit();
+*/
+	DetourTransactionBegin();
+	DetourUpdateThread(GetCurrentThread());
+	g_pOldCreateWindowEx = DetourFindFunction("USER32.dll", "CreateWindowEx");
+	DetourAttach(&g_pOldCreateWindowEx, NewCreateWindowEX);
+	
 	DetourTransactionCommit();
 
 }
@@ -63,7 +76,7 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD  ul_reason_for_call, LPVOID lpReser
 		//s_hDll = hModule;
 		//DisableThreadLibraryCalls(hModule);
 		SetHook();
-		//MessageBoxW(0, L"Hooked!", L"Info", 0);
+		
 		break;
 	case DLL_THREAD_ATTACH:
 		break;
